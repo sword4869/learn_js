@@ -54,10 +54,10 @@ $ npm remove xxx --save
 ## package
 
 必有`package.json`。
+- `name`：包名，引用此包的标识符
 - `dependencies`：生产依赖
 - `devDependencies`: 开发依赖
 - `main`：主文件
-- `name`：包名，引用此包的标识符
 
 NPM(Node Package Manager)
 ## npm install
@@ -97,6 +97,25 @@ $ npm install -g xxx
 
 $ npm install -g cnpm --registry=https://registry.npmmirror.com
 ```
+
+# build
+
+```bash
+$ npm start
+  Starts the development server.
+
+$ npm run build
+  Bundles the app into static files for production.
+
+$ npm test
+  Starts the test runner.
+
+$ npm run eject
+  Removes this tool and copies build dependencies, configuration files
+  and scripts into the app directory. If you do this, you can’t go back!
+
+```
+
 # 模块
 ## 单独写
 ```js
