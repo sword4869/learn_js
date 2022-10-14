@@ -1,24 +1,8 @@
-var obj = {}
-obj.name = "1"
-var obj2 = obj
-var obj3 = obj
+var num = 0xaa
 
-obj.name = "2"
-console.log(obj.name, obj2.name)    
-// 2 2
+num_binary = num.toString(2)
+num_octal = num.toString(8)
+num_decimal = num.toString(10)
+num_hexadecimal = num.toString(16)
 
-obj2.name = "3"
-console.log(obj.name, obj2.name)    
-// 3 3
-
-obj = null
-console.log(obj, obj2, obj3)    
-// null { name: '3' } { name: '3' }
-
-obj2.name = "4"
-console.log(obj, obj2, obj3)    
-// null { name: '4' } { name: '4' }
-
-obj2 = {age: 10}
-console.log(obj, obj2, obj3)    
-// null null { name: '4' }
+console.log(num_binary, num_octal, num_decimal, num_hexadecimal)

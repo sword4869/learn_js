@@ -1,3 +1,102 @@
+# Nodejs
+Node.js is a **JavaScript** runtime environment that is used for hosting websites. 
+
+It offers users the ability to write websites in JavaScript whose code executes on the **server** instead of a client’s browser.
+
+
+```bash
+# 直接下是老版本
+sudo apt install nodejs npm
+
+# 升级版本
+# 清除缓存信息
+sudo npm cache clean -f
+# 用npm全局安装一个管理node版本的管理模板n
+sudo npm install -g n
+# 升级到nodejs最新稳定版本
+sudo n stable
+```
+window系统升级node只能到node官网下载window安装包来覆盖之前的node。
+```bash
+$ node -v
+v12.22.9
+
+$ npm -v
+8.5.1
+```
+```bash
+$ npm version
+{
+  npm: '8.5.1',
+  node: '12.22.9',
+  v8: '7.8.279.23-node.56',
+  uv: '1.43.0',
+  zlib: '1.2.11',
+  brotli: '1.0.9',
+  ares: '1.18.1',
+  modules: '72',
+  nghttp2: '1.43.0',
+  napi: '8',
+  llhttp: '2.1.4',
+  http_parser: '2.9.4',
+  openssl: '1.1.1m',
+  cldr: '40.0',
+  icu: '70.1',
+  tz: '2022b',
+  unicode: '14.0'
+}
+
+$ npm search xxx
+# npm r xxx
+$ npm remove xxx
+$ npm remove xxx --save
+```
+## package
+
+必有`package.json`。
+- `dependencies`：生产依赖
+- `devDependencies`: 开发依赖
+- `main`：主文件
+- `name`：包名，引用此包的标识符
+
+NPM(Node Package Manager)
+## npm install
+
+> 创建空项目
+```bash
+$ mkdir project  && cd project
+
+# 生成项目的package.json，确保让包一定安装在此项目中。
+$ npm init
+
+# 下载到 node_modules 文件夹中
+# node i xxx
+$ node install xxx
+
+# --save, 添加此包到项目package.json的dependencies中
+$ node install xxx --save
+```
+
+> 下载别人的项目
+
+项目中没有包，只写了项目package.json的dependencies，所以要安装才能运行。
+```bash
+# 下载当前项目所依赖的包
+$ npm install
+```
+
+> 全局下载，一般用于配置工具
+
+```bash
+$ npm install -g xxx
+```
+比如 cnpm
+
+```bash
+# npm install -g cnpm --registry=https://registry.npm.taobao.org, 已经过期
+
+$ npm install -g cnpm --registry=https://registry.npmmirror.com
+```
 # 模块
 ## 单独写
 ```js
@@ -88,3 +187,4 @@ null { age: 10 } { name: '4' }
 综上所述，因为`exports`和`module.exports`的关系是`exports = module.exports`，所以直接使用`exports`，就无法修改`module.exports`的值。
 
 </details>
+
