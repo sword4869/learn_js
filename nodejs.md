@@ -1,9 +1,21 @@
-# Nodejs
+- [1. Nodejs](#1-nodejs)
+  - [1.1. introduction](#11-introduction)
+  - [1.2. NPM](#12-npm)
+    - [1.3. npm install](#13-npm-install)
+- [2. build](#2-build)
+- [3. 模块](#3-模块)
+  - [3.1. 单独写](#31-单独写)
+  - [3.2. 写在一起](#32-写在一起)
+
+---
+# 1. Nodejs
+## 1.1. introduction
 Node.js is a **JavaScript** runtime environment that is used for hosting websites. 
 
 It offers users the ability to write websites in JavaScript whose code executes on the **server** instead of a client’s browser.
 
 
+> installation
 ```bash
 # 直接下是老版本
 sudo apt install nodejs npm
@@ -45,22 +57,50 @@ $ npm version
   tz: '2022b',
   unicode: '14.0'
 }
-
-$ npm search xxx
-# npm r xxx
-$ npm remove xxx
-$ npm remove xxx --save
 ```
-## package
 
-必有`package.json`。
+> 配置源
+
+```bash
+# npm install -g cnpm --registry=https://registry.npm.taobao.org, 已经过期
+
+$ npm install -g cnpm --registry=https://registry.npmmirror.com
+```
+cnpm这种方式，既保留了原来的npm源，又能用国内源cnpm。
+
+但是没必要，直接覆盖换源得了。
+```bash
+npm config set registry https://registry.npmmirror.com
+```
+
+## 1.2. NPM
+
+NPM(Node Package Manager)
+
+
+每个 package 必有`package.json`。
 - `name`：包名，引用此包的标识符
 - `dependencies`：生产依赖
 - `devDependencies`: 开发依赖
 - `main`：主文件
 
-NPM(Node Package Manager)
-## npm install
+
+```bash
+$ npm search xxx
+
+# npm r xxx
+$ npm remove xxx
+$ npm remove xxx --save
+
+$ npm install xxx
+$ npm install xxx --save
+$ npm install -g xxx
+
+$ npm run build
+
+$ npm start
+```
+### 1.3. npm install
 
 > 创建空项目
 ```bash
@@ -92,13 +132,8 @@ $ npm install -g xxx
 ```
 比如 cnpm
 
-```bash
-# npm install -g cnpm --registry=https://registry.npm.taobao.org, 已经过期
 
-$ npm install -g cnpm --registry=https://registry.npmmirror.com
-```
-
-# build
+# 2. build
 
 ```bash
 $ npm start
@@ -116,8 +151,8 @@ $ npm run eject
 
 ```
 
-# 模块
-## 单独写
+# 3. 模块
+## 3.1. 单独写
 ```js
 // A文件 module.js
 // 相当于 module.exports.x = 123;
@@ -153,7 +188,7 @@ Node中每一个js文件是一个模块，每个模块都是运行在一个函�
 </details>
 
 
-## 写在一起
+## 3.2. 写在一起
 ```js
 // 省略 module. 直接写 exports 不行
 module.exports = {
