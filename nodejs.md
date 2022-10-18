@@ -113,9 +113,16 @@ $ npm init
 # node i xxx
 $ node install xxx
 
-# --save, 添加此包到项目package.json的dependencies中
-$ node install xxx --save
+
+# --save, 添加此包到项目package.json的dependencies中，可以省掉你手动修改 `package.json` 文件的步骤
+# 我们在使用 npm install 安装模块或插件时，有两种命令把它们写入到 package.json 文件中去，
+# 在 package.json 里面体现出的区别就是，使用 --save 安装的插件，会被写入到 dependencies （需要发布到生产环境）对象里面去，
+# 使用 --save -dev 安装的插件，会被写入到 devDependencies （这里的插件只用于开发环境）对象里面去。
+$ npm install xx --save
+$ npm install xxx --save -dev
 ```
+
+
 
 > 下载别人的项目
 
