@@ -16,10 +16,10 @@
 |meaning|npm command| yarn command|
 |-|-|-|
 |初始化项目的 package.json|npm init|yarn init|
-|安装但不写入 package.json|npm install	|yarn|
+|安装但不写入 package.json|npm install	|`yarn` or `yarn install`|
 |安装并写入到 生产的 package.json|npm install xxx --save	|yarn add xxx|
 |安装并写入到 开发的 package.json|npm install xxx --save-dev	|yarn add xxx --dev|
-|全局安装|npm install	-g||
+|全局安装|npm install	-g|yarn global add xxx|
 |卸载并更新package.json|npm uninstall xxx --save	|yarn remove xxx|
 |更新|npm update xxx --save	|yarn upgrade xxx|
 
