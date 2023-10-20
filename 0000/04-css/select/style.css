@@ -1,0 +1,19 @@
+/* all, include body */
+* {
+    border: 1px solid;
+}
+
+/* for Class */
+.firstClass {
+    background-color: red;
+}
+
+/* for ID */
+#firstId {
+    background-color: gray;
+}
+
+/* tag */
+div {
+    background-color: gold;
+}

@@ -1,0 +1,11 @@
+body {
+    background-color: yellowgreen;
+    /* set the font on all the child elements, this property can be inherited */
+    font-size: 40px;
+}
+
+h1 {
+    /* why h1 does not work? because h1 have predefined font size */
+    background-color: gray;
+    font-size: 30px;
+}

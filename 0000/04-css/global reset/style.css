@@ -1,0 +1,20 @@
+/* select all the elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#box1 {
+    background-color: gray;
+    box-sizing: content-box;
+    width: 300px;
+    padding: 25px;
+}
+
+#box2 {
+    background-color: gainsboro;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 25px;
+}
