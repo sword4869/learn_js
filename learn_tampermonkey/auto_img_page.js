@@ -28,6 +28,8 @@
         newElement.style.backgroundColor = '#FFF';
         newElement.style.zIndex = 9999;
 
+        const page_increment = 30;
+
         // image_url
         let is_nyahentai = document.getElementById('image-container') == null;
         console.log('is_nyahentai: ' + is_nyahentai);
@@ -41,7 +43,7 @@
             const suffix = image_url_list.at(-1);
             image_url_base = image_url.slice(0, -suffix.length);
             start_num = suffix.split('.')[0];
-            end_num = Number(start_num) + 30;
+            end_num = Number(start_num) + page_increment;
             img_suffix = suffix.split('.')[1];
         }
 
@@ -71,6 +73,19 @@
         newElement.appendChild(div_img_suffix);
 
         // 点击按钮，生成图片页面
+        let btn_change = document.createElement('button');
+        btn_change.innerText = '↹';
+        // 让按钮更大一些
+        btn_change.style.border = '1px solid #DDD';
+        btn_change.style.backgroundColor = '#FFF';
+        btn_change.addEventListener('click',
+            function () {
+                div_start_num.value=Number(div_start_num.value)+page_increment;
+                div_end_num.value =Number(div_end_num.value)+page_increment;
+            }
+        );
+
+        // 点击按钮，生成图片页面
         let btn_upper = document.createElement('button');
         btn_upper.innerText = '+';
         // 让按钮更大一些
@@ -90,6 +105,7 @@
         // 换行
         newElement.style.display = 'grid';
         newElement.appendChild(btn_upper);
+        newElement.appendChild(btn_change);
 
         // 将这个新的元素和它的文本添加到 DOM 中
         document.body.appendChild(newElement);
