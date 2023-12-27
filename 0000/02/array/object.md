@@ -1,12 +1,19 @@
-'use strict';
 
-// Note: key is not the String type! It is property. Therefore, key can be expressed either as a string or directly.
+object 就是其他语言里的字典，key-value pair.
+
+## property
+
+Note: key is not the String type! It is **property**. 
+
+Therefore, key can be expressed either as a string or directly.
+```js
 const person = {
     'age': 22,
     name: 'Bob'
 };
-
-
+```
+## operations
+```js
 /* 2 types to get value */
 // Dot style: no ''
 const age = person.age;
@@ -40,3 +47,4 @@ const person2 = {
     }
 };
 person2.getAgeDiff(10);
+```

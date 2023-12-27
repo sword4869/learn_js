@@ -32,7 +32,8 @@ const world2 = function (c, d) {
 console.log(world2(2, 2));
 
 
-/* arrow function */
+/* arrow function(ES6) */
+// e => `human : ${e}` 是函数的主体，const human = 是函数的名称
 const human = e => `human : ${e}`;
 console.log(human(3));
 

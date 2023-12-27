@@ -17,6 +17,8 @@ const a = [1, 2, 3];
 
 // Array
 const b = Array(4, 5, 6);
+// 指定数量、指定内容
+const large = new Array(1000).fill('same');
 
 
 /* Array can consist of different datatypes. Even array. */
@@ -52,13 +54,7 @@ const length = c.length;
 ```
 
 ## 4. 修改
-```js
-// Although the variable c is const, we can alter the element of c
-// The primitive values are immutable, but an Array is not a primitive value.
-c[0] = 'Hello';
-// But it is NOT allowed to replace the entire Array
-// c = [7, 8, 9];
-```
+js 的数组是动态数组，故而不用考虑内存。
 ```js
 // add element
 c.push('Last');         // Last
@@ -77,6 +73,19 @@ console.log(c);
 // const element = c.pop();                // Last
 // const element2 = c.shift();              // First
 // console.log(c, element, element2);
+```
+```js
+// 直接数组下标赋值
+// const 可以：
+// Although the variable c is const, we can alter the element of c
+// The primitive values are immutable, but an Array is not a primitive value.
+const c = [];   // let or const 都行
+for(let i = 0; i < 5; i++) {
+    c[i] = i;
+}
+
+// But it is NOT allowed to replace the entire Array
+// c = [7, 8, 9];
 ```
 
 ## 5. 判断 Array 是否包含某个元素
