@@ -3,20 +3,25 @@
 /**
  * select element
  */
-// querySelector: `.` for class, `#` for id.
-// just return the first element in the list of matched.
+// 1. querySelector: 
+//      return the first element in the list of matched.
+//      `.` for class, `#` for id.
+//    querySelectorAll:
+//      return all matched elements
 const pEl = document.querySelector('.firstClass');
-
-// return all matched elements
+const inputEl = document.querySelector('#text1');
 const pEls = document.querySelectorAll('.firstClass');
 
-const inputEl = document.querySelector('#text1');
-
-// getElementById'effect is as same as querySelector's effect.
-// getElementById is faster than querySelector. 
+// 2. getElementById：单个元素
+//      return the element with the specified ID, or null if no matching element is found.
+//      getElementById'effect is as same as querySelector's effect, butgetElementById is faster than querySelector. 
+//    getElementsByClassName/getElementsByName/getElementsByTagName/getElementsByTagNameNS: 多个元素
+//      return a HTMLCollection, which is an array-like object.
 const btn1El = document.getElementById('btn1');    // no '#'
-const btn2El = document.querySelector('#btn2');
-const btn3El = document.querySelector('#btn3');
+const btns = document.getElementsByClassName('btn');
+const btns2 = document.getElementsByTagName('button');
+const btns3 = document.getElementsByName('button');
+const btns4 = document.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'button');
 
 
 

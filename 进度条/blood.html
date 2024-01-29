@@ -1,0 +1,74 @@
+<html>
+
+<head>
+	<title>进度条</title>
+	<style type="text/css">
+		#blood_box {
+			width: 150px;
+			height: 150px;
+			position: relative;
+			background: #f00;
+			overflow: hidden;
+		}
+
+		#bloodbar {
+			width: 150px;
+			position: absolute;
+			z-index: 1;
+			background-image: url('bloodbar.png');
+			background-repeat: repeat-y;
+			background-position: center bottom;
+		}
+
+		#bloodframe {
+			width: 150px;
+			height: 150px;
+			position: absolute;
+			z-index: 2;
+			background-image: url('bloodframe.png');
+			background-repeat: no-repeat;
+		}
+
+		#blood_text {
+			width: 150px;
+			height: 150px;
+			position: absolute;
+			z-index: 3;
+			text-align: center;
+			margin: 75px auto;
+		}
+	</style>
+</head>
+
+<body>
+	<label>生命回复进度</label>
+	<br>
+	<div id="blood_box">
+		<div id="bloodbar"></div>
+		<div id="bloodframe"></div>
+		<div id="blood_text"></div>
+	</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	function f1(i) {
+		if (i > 100) {
+			i = 100;
+		}
+		else if (i < 0) {
+			i = 0;
+		}
+		let ratio_height = 150 * (100 - i) / 100;//根据百分比，计算div的高度
+		$("#bloodbar").css("height", ratio_height + "px");//给div动态加上高度
+		$("#blood_text").html(i + "%");//给div动态加上值
+	}
+	let i = 1;
+	let interval = setInterval(function () {
+		f1(i = i + 1);
+	}, 100);
+	setTimeout(function () {
+		clearInterval(interval);
+	}, 10000);
+</script>
+
+</html>

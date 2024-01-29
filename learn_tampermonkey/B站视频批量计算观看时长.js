@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         B站视频批量计算观看时长
 // @namespace    http://tampermonkey.net/
-// @version      2024-01-25
+// @version      1.1
 // @description  B站视频批量计算观看时长，支持倍速计算，支持多P视频，支持多集视频，支持多P多集视频，
 // @author       sword4869
 // @match        https://www.bilibili.com/video/*
