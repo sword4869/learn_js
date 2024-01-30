@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         B站视频实时时长
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  B站视频批量计算观看时长，支持倍速计算，支持多P视频，支持多集视频，支持多P多集视频，
 // @author       sword4869
 // @match        https://www.bilibili.com/video/*
@@ -91,6 +91,8 @@
 
         var currentFillPercentage = 0;
         var fillPercentage = 0;
+
+        var text_index = 0; // 0: 百分比，1: 累计时间，2: 剩余时间
 
         //#region fluid context values
         var foregroundFluidLayer = {
@@ -416,17 +418,32 @@
                 setupCanvas();
                 draw();
             },
-            setText: function (newText) {
-                text = newText;
+            setTexts: function (newTexts) {
+                this.setPercentage(newTexts[0]);
+                if (text_index == 0) {
+                    text = newTexts[0] + "%";
+                }
+                else if (text_index == 1) {
+                    text = newTexts[1];
+                }
+                else if (text_index == 2) {
+                    text = newTexts[2];
+                }
+            },
+            addTextIndex() {
+                text_index = (text_index + 1) % 3;
+                if (text_index == 0) {
+                    this.setFontSize("20px");
+                }
+                else if (text_index == 1) {
+                    this.setFontSize("15px");
+                }
+                else if (text_index == 2) {
+                    this.setFontSize("15px");
+                }
             },
             setPercentage(percentage) {
                 fillPercentage = clamp(percentage, 0, 100);
-            },
-            getPercentage() {
-                return fillPercentage;
-            },
-            getCurrentPercentage() {
-                return currentFillPercentage;
             },
             setFontSize: function (newFontSize) {
                 options.fontSize = newFontSize;
@@ -437,9 +454,7 @@
     const list_box = document.getElementsByClassName('list-box')[0];
     const fm = new FluidMeter();
     const targetContainer = document.createElement('div');
-    const text_kinds = ['百分比', '累计时间', '剩余时间'];
-    let text_kind = text_kinds[0];
-
+    
     // 定义鼠标按下时的坐标和拖动区域的初始位置
     let startX, startY, startRight, startTop;
 
@@ -473,22 +488,8 @@
             percentage = (accumulative_seconds / total_seconds * 100).toFixed(3);
         }
 
-        let text;
-        if (text_kind == text_kinds[0]) {
-            fm.setText(percentage + "%");
-            text = percentage + "%";
-        }
-        else if (text_kind == text_kinds[1]) {
-            text = accumulative_seconds_str;
-        }
-        else if (text_kind == text_kinds[2]) {
-            text = remaining_seconds_str;
-        }
-        if (fm.getPercentage() != percentage) {
-            fm.setPercentage(percentage);
-            fm.setText(text);
-        }
-        console.log(fm.getCurrentPercentage());
+        const texts = [percentage, accumulative_seconds_str, remaining_seconds_str];
+        fm.setTexts(texts);
     }
 
     window.onload = function () {
@@ -526,19 +527,7 @@
 
         // 切换显示内容 text_kind
         targetContainer.ondblclick = function () {
-            const index = text_kinds.indexOf(text_kind);
-            text_kind = text_kinds[(index + 1) % text_kinds.length];
-
-            // setFontSize
-            if (text_kind == text_kinds[0]) {
-                fm.setFontSize("20px");
-            }
-            else if (text_kind == text_kinds[1]) {
-                fm.setFontSize("15px");
-            }
-            else if (text_kind == text_kinds[2]) {
-                fm.setFontSize("15px");
-            }
+            fm.addTextIndex();
         }
     };
 })();
