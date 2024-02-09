@@ -492,42 +492,44 @@
         fm.setTexts(texts);
     }
 
-    window.onload = function () {
-        if (list_box == null) {
-            return;
-        }
-        const body = document.body;
-        targetContainer.id = "fluid-meter";
-        targetContainer.style.cssText = "position:absolute;right:55px;top:218px;z-index:999";
-        body.appendChild(targetContainer);
+    
+    console.log("B站视频实时时长，启动！");
+    if (list_box == null) {
+        console.log("B站视频实时时长，未找到视频列表，退出！");
+        return;
+    }
+    const body = document.body;
+    targetContainer.id = "fluid-meter";
+    targetContainer.style.cssText = "position:absolute;right:55px;top:218px;z-index:999";
+    body.appendChild(targetContainer);
 
-        fm.init({
-            targetContainer: targetContainer,
-        });
+    fm.init({
+        targetContainer: targetContainer,
+    });
 
-        // 定时器，每秒刷新一次
-        setInterval(updater, 1000);
+    // 定时器，每秒刷新一次
+    setInterval(updater, 1000);
 
-        // 拖动
-        targetContainer.addEventListener("mousedown", function (event) {
-            // 获取鼠标按下时的坐标
-            startX = event.clientX;
-            startY = event.clientY;
+    // 拖动
+    targetContainer.addEventListener("mousedown", function (event) {
+        // 获取鼠标按下时的坐标
+        startX = event.clientX;
+        startY = event.clientY;
 
-            // 获取拖动区域的初始位置
-            startRight = parseInt(targetContainer.style.right) || 0;
-            startTop = parseInt(targetContainer.style.top) || 0;
+        // 获取拖动区域的初始位置
+        startRight = parseInt(targetContainer.style.right) || 0;
+        startTop = parseInt(targetContainer.style.top) || 0;
 
-            // 为文档添加mousemove事件监听器
-            document.addEventListener("mousemove", mousemoveHandler);
+        // 为文档添加mousemove事件监听器
+        document.addEventListener("mousemove", mousemoveHandler);
 
-            // 为文档添加mouseup事件监听器
-            document.addEventListener("mouseup", mouseupHandler);
-        });
+        // 为文档添加mouseup事件监听器
+        document.addEventListener("mouseup", mouseupHandler);
+    });
 
-        // 切换显示内容 text_kind
-        targetContainer.ondblclick = function () {
-            fm.addTextIndex();
-        }
-    };
+    // 切换显示内容 text_kind
+    targetContainer.ondblclick = function () {
+        fm.addTextIndex();
+    }
+    console.log("B站视频实时时长，启动完毕！");
 })();
