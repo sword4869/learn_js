@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         B站视频实时时长
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  B站视频批量计算观看时长，支持倍速计算，支持多P视频，支持多集视频，支持多P多集视频，
 // @author       sword4869
 // @match        https://www.bilibili.com/video/*
@@ -527,9 +527,43 @@
         document.addEventListener("mouseup", mouseupHandler);
     });
 
+    var clickTimer = null; 
     // 切换显示内容 text_kind
+    targetContainer.onclick = function () {
+        if(clickTimer) {  
+            window.clearTimeout(clickTimer);  
+            clickTimer = null;  
+        }  
+        clickTimer = window.setTimeout(function(){  
+            fm.addTextIndex();
+        }, 300);  
+    }
+
+    // 切换格式
     targetContainer.ondblclick = function () {
-        fm.addTextIndex();
+        if(clickTimer) {  
+            window.clearTimeout(clickTimer);  
+            clickTimer = null;  
+        }
+
+        let ul = document.getElementById('mirror-vdcon');
+        const justifyContent = window.getComputedStyle(ul).justifyContent;
+        if (justifyContent == undefined || justifyContent == '' || justifyContent == 'center'){
+            ul.style.justifyContent = 'space-between'
+        } else{
+            ul.style.justifyContent = ''
+        }       
+        console.log('切换格式' + justifyContent);
+
+
+        ul = document.getElementById('danmukuBox');
+        const marginTop = window.getComputedStyle(ul).marginTop;
+        if (marginTop){
+            ul.style.marginTop = '0px';
+        } else{
+            ul.style.marginTop = '745px';
+        }       
+        console.log('切换格式' + marginTop);
     }
     console.log("B站视频实时时长，启动完毕！");
 })();
