@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vue.js</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- {{}} 只能写在html标签内部，空格无所谓 -->
+        <h1>{{ message}}</h1>
+
+
+        <!-- v-bind:属性名="数据模型"，绑定数据模型到属性 -->
+        <a v-bind:href="url">链接1</a>
+        <a :href="url">链接2</a>
+
+
+        <!-- v-model="数据模型"，双向绑定数据模型。修改input框的值，数据模型url的值也会改变 -->
+        <input type="text" v-model="url">
+
+
+        <!-- v-on:事件名="方法名"，绑定事件到方法 -->
+        <button v-on:click="clickMe()">点击</button>
+        <button @click="clickMe()">点击</button>
+
+
+        <!-- v-if="条件"，根据条件判断是否显示 -->
+        <input type="text" v-model="age">
+        <div v-if="age < 18">未成年人</div>
+        <div v-else-if="age < 60">成年人</div>
+        <div v-else>老年人</div>
+
+
+        <!-- v-show="条件"，根据条件判断是否显示 -->
+        <div v-show="age < 18">未成年人</div>
+        <div v-show="age >=18 && age < 60">成年人</div>
+        <div v-show="age >= 60">老年人</div>
+
+        <!-- v-for="item in 数据模型"，遍历数据模型 -->
+        <!-- (item, index) 先item后index -->
+        <ul>
+            <li v-for="item in [1, 2, 3]">{{ item }}</li>
+        </ul>
+        <ul>
+            <li v-for="(item, index) in arr"> {{ index }},{{ item }}</li>
+        </ul>
+
+    </div>
+
+    <script>
+        // vue接管区域是html中的对应标签
+        var app = new Vue({
+            el: '#app',
+            // 数据模型
+            data: {
+                age : 16,
+                message: 'Hello Vue!',
+                url: 'https://www.baidu.com',
+                arr: ['A', 'B', 'C']
+            },
+            // 方法
+            methods: {
+                clickMe: function() {
+                    alert('Hello Vue!')
+                }
+            }
+        })
+    </script>
+</html>

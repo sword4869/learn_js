@@ -1,12 +1,35 @@
+- [创建](#创建)
 - [1. length](#1-length)
 - [2. index](#2-index)
 - [3. 子串](#3-子串)
+- [indexOf()函数检索位置](#indexof函数检索位置)
 - [4. split](#4-split)
 - [5. 拼接](#5-拼接)
+- [trim](#trim)
 - [6. \`\`符号](#6-符号)
 
 
 ---
+## 创建
+
+方式1：
+
+
+```js
+// 单引号，双引号都行
+let firstName = 'Bob';
+var str = 'Hello String';
+```
+
+
+
+
+方式2：
+
+```js
+var str = new String("Hello String");
+```
+
 ## 1. length
 
 ```js
@@ -21,10 +44,12 @@ let b1 = 'asfd fsd';
 
 b1[0]               // 'a'
 b1[-1]              //undefined
-b1[b1.length - 1]   // 'd'
 
 b1.at(0)    // 'a'
 b1.at(-1)   // 'd'
+
+b1.charAt(0)               // 'a'
+b1.charAt(-1)              //undefined
 ```
 
 查询indexOf，可以输入多个字符
@@ -56,6 +81,16 @@ b1.indexOf('fsaa')        // -1
     let b1 = 'asfd fsd';
     b1.slice(3, -2)         // 'd f'
     ```
+
+## indexOf()函数检索位置
+
+indexOf()函数用于检索指定内容在字符串中的索引位置的，返回值是索引，参数是指定的内容。
+
+```js
+let b1 = 'asfd fsd';
+
+console.log(b1.indexOf("fd")); // 2
+```
 ## 4. split
 
 ```js
@@ -68,6 +103,16 @@ let suffix = url_array.at(-1);      // '1.jpg'
 ```js
 let language = 'Java' + ' ' + 'script';
 ```
+
+## trim
+
+trim()函数用于去除字符串两边的空格的。添加如下代码：
+
+```js
+var s = str.trim();
+console.log(s.length);
+```
+
 
 ## 6. \`\`符号
 

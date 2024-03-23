@@ -2,27 +2,28 @@
 - [2. 索引](#2-索引)
   - [2.1. 通过索引获取元素](#21-通过索引获取元素)
   - [2.2. 查询某个元素的索引](#22-查询某个元素的索引)
-- [3. length](#3-length)
+- [3. length属性](#3-length属性)
 - [4. 修改](#4-修改)
-- [5. 判断 Array 是否包含某个元素](#5-判断-array-是否包含某个元素)
+- [5. 方法](#5-方法)
 
 
 ---
 ## 1. 两种构造数组的方式
 
 ```js
-/* 2 types to define array */
 // []
 const a = [1, 2, 3];
 
-// Array
+// Array: 可new 可不new
 const b = Array(4, 5, 6);
-// 指定数量、指定内容
+const c = new Array(4, 5, 6);
+```
+
+```js
 const large = new Array(1000).fill('same');
 
-
 /* Array can consist of different datatypes. Even array. */
-const c = [1, true, 'Yeah', b];
+const d = [1, true, 'Yeah', a];
 ```
 
 ## 2. 索引
@@ -47,32 +48,38 @@ a.indexOf(1);     // 0
 a.indexOf(6);     // -1
 ```
 
-## 3. length
+## 3. length属性
 
 ```js
-const length = c.length;
+const length = a.length;
 ```
 
 ## 4. 修改
 js 的数组是动态数组，故而不用考虑内存。
+
+```js
+const arr = [1, 2, 3];
+
+arr[10] = 1;
+console.log(arr[10]); // 1
+console.log(arr[9]);  // undefined
+console.log(arr); // [1, 2, 3, 1]
+console.log(arr.length);  // 11
+```
 ```js
 // add element
-c.push('Last');         // Last
-c.unshift('First');     // First
-console.log(c);
-// return the new length of Array
-// const new_length = c.push('Last');
-// const new_length2 = c.unshift('First');
-// console.log(c, new_length, new_length2);
+const c = [1, 2, 3];
+// 尾插 push 和头插 unshift，返回新数组长度
+c.push('Last');
+const length = c.unshift('First');
+console.log(length);
+console.log(c); // ["First", 1, 2, 3, "Last"]
 
 // remove element
-c.pop();                // Last
-c.shift();              // First
-console.log(c);
-// return the removed element
-// const element = c.pop();                // Last
-// const element2 = c.shift();              // First
-// console.log(c, element, element2);
+// 尾弹 pop 和头弹 shift，返回弹出元素
+c.pop();
+const d = c.shift();
+console.log(d);   // First
 ```
 ```js
 // 直接数组下标赋值
@@ -88,11 +95,27 @@ for(let i = 0; i < 5; i++) {
 // c = [7, 8, 9];
 ```
 
-## 5. 判断 Array 是否包含某个元素
+## 5. 方法
 ```js
-// get true/false when Array does/doesn't include element.
-// Be careful that it is also strict comparision.
-const flag = c.includes('Hello');
-const flag2 = c.includes('World');
-console.log(flag, flag2);
+const arr = [1, 2, 3];
+
+
+// forEach
+arr.forEach(e=>console.log(e));
+
+
+// 判断 Array 是否包含某个元素
+const flag = arr.includes(1);
+const flag2 = arr.includes("1");
+console.log(flag, flag2); // true false
+
+
+// 切片[start, end)
+const arr2 = arr.slice(0, 2);
+console.log(arr2);  // [1,2]
+
+
+// 删除
+arr.splice(0, 1); // 从哪个索引位置删除，删除元素的个数
+console.log(arr); // [2, 3]
 ```
