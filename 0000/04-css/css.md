@@ -3,12 +3,12 @@
 - [3. 常用](#3-常用)
 ---
 ## 1. 盒子模型
-![alt text](../../images/image.png)
+![alt text](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241726863.png)
 
-![](../../images/20220604100249.png)  
+![](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241726864.png)  
 
 
-![alt text](../../images/image-1.png)
+![alt text](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241726865.png)
 - 盒子模型组成：内容区域（content）、内边距区域（padding）、边框区域（border）、外边距区域（margin）
 - 盒子的大小，其实就包括三个部分： border、padding、content，而margin外边距是不包括在盒子之内的。
 

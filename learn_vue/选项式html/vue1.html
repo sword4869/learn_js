@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Vue.js</title>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-    <script src="vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="vue.js"></script> -->
 </head>
 
 <body>
@@ -19,22 +19,18 @@
         <a v-bind:href="url">链接1</a>
         <a :href="url">链接2</a>
 
-
-        <!-- v-model="数据模型"，双向绑定数据模型。修改input框的值，数据模型url的值也会改变 -->
-        <input type="text" v-model="url">
-
-
         <!-- v-on:事件名="方法名"，绑定事件到方法 -->
         <button v-on:click="clickMe()">点击</button>
         <button @click="clickMe()">点击</button>
 
 
-        <!-- v-if="条件"，根据条件判断是否显示 -->
+        <!-- v-model="数据模型"，双向绑定数据模型。修改input框的值，数据模型url的值也会改变 -->
         <input type="text" v-model="age">
+
+        <!-- v-if="条件"，根据条件判断是否显示 -->
         <div v-if="age < 18">未成年人</div>
         <div v-else-if="age < 60">成年人</div>
         <div v-else>老年人</div>
-
 
         <!-- v-show="条件"，根据条件判断是否显示 -->
         <div v-show="age < 18">未成年人</div>
@@ -47,9 +43,11 @@
             <li v-for="item in [1, 2, 3]">{{ item }}</li>
         </ul>
         <ul>
-            <li v-for="(item, index) in arr"> {{ index }},{{ item }}</li>
+            <li v-for="(item, index) in arr"> {{ item }}, {{ index }}</li>
         </ul>
-
+        
+        <p>Using text interpolation: {{ rawHtml }}</p>
+        <p>Using v-html directive: <span v-html="rawHtml"></span></p>
     </div>
 
     <script>
@@ -61,7 +59,8 @@
                 age : 16,
                 message: 'Hello Vue!',
                 url: 'https://www.baidu.com',
-                arr: ['A', 'B', 'C']
+                arr: ['A', 'B', 'C'],
+                rawHtml: '<span style="color: red">This should be red.</span>'
             },
             // 方法
             methods: {

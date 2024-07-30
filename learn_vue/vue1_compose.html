@@ -1,0 +1,51 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <!-- {{}} 只能写在html标签内部，空格无所谓 -->
+  <h1>{{ message}}</h1>
+
+
+  <!-- v-bind:属性名="数据模型"，绑定数据模型到属性 -->
+  <a v-bind:href="url">链接1</a>
+  <a :href="url">链接2</a>
+
+  <!-- v-on:事件名="方法名"，绑定事件到方法 -->
+  <button v-on:click="clickMe()">点击</button>
+  <button @click="clickMe()">点击</button>
+
+
+  <!-- v-model="数据模型"，双向绑定数据模型。修改input框的值，数据模型url的值也会改变 -->
+  <input type="text" v-model="age">
+
+  <!-- v-if="条件"，根据条件判断是否显示 -->
+  <div v-if="age < 18">未成年人</div>
+  <div v-else-if="age < 60">成年人</div>
+  <div v-else>老年人</div>
+
+  <!-- v-show="条件"，根据条件判断是否显示 -->
+  <div v-show="age < 18">未成年人</div>
+  <div v-show="age >=18 && age < 60">成年人</div>
+  <div v-show="age >= 60">老年人</div>
+
+  <!-- v-for="item in 数据模型"，遍历数据模型 -->
+  <!-- (item, index) 先item后index -->
+  <ul>
+    <li v-for="item in [1, 2, 3]">{{ item }}</li>
+  </ul>
+  <ul>
+    <li v-for="(item, index) in arr"> {{ item }}, {{ index }}</li>
+  </ul>
+</div>
+
+<script>
+  const { createApp, ref } = Vue
+
+  createApp({
+    setup() {
+      const message = ref('Hello vue!')
+      return {
+        message
+      }
+    }
+  }).mount('#app')
+</script>

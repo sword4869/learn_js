@@ -25,12 +25,12 @@ Node中每一个js文件是一个模块，每个模块都是运行在一个函�
 <br />
 
 
-![picture 1](/image/9a471b8595a1efe77161a3676763d359b0bfcdd11cbc9974ea23ab4faedb6d9d.png) 
+![picture 1](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241727767.png) 
 
-![picture 3](/image/bd2a7ac1a0309dd8b81d94b6384b94be007ddeeab8d3257129551e621a4086bc.png)  
+![picture 3](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241727768.png)  
 
 
-![picture 2](/image/2284dcbb84396d4e0c23e29ac6f028fb66ebfca7ae7028366d3889542fa480ca.png)  
+![picture 2](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241727769.png)  
 
 </details>
 

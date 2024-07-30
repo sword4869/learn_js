@@ -7,7 +7,7 @@ HTML 文档分为
 - Text：文本对象
 - Comment：注释对象
 
-![alt text](../../images/image-4.png)
+![alt text](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241727646.png)
 
 ## 获取DOM对象
 

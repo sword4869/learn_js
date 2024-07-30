@@ -1,4 +1,8 @@
-## 1. 导入Vue
+通过 CDN 使用 Vue 时，不涉及“构建步骤”。
+
+可以用于增强静态的 HTML 或与后端框架集成。但是，你将无法使用单文件组件 (SFC) 语法。
+
+## 导入Vue
 
 1. 在线导入
 
@@ -10,22 +14,9 @@
     ```js
     <script src="vue.js"></script>
     ```
-## 2. Vue指令
 
-| **指令**  | **作用**                                            |
-| --------- | --------------------------------------------------- |
-| v-bind    | 为HTML标签绑定属性值，如设置  href , css样式等      |
-| v-model   | 在表单元素上创建双向数据绑定，绑定到value属性上|
-| v-on      | 为HTML标签绑定事件                                  |
-| v-if/v-else-if/v-else| 条件性的渲染某元素，判定为true时渲染,否则不渲染     |
-| v-show    | 根据条件展示某元素，区别在于切换的是display属性的值 |
-| v-for     | 列表渲染，遍历容器的元素或者对象的属性              |
 
-![alt text](../images/image-5.png)
-
-[vue.html](./demo/vue.html)
-
-## 3. 生命周期
+## 生命周期
 
 vue的生命周期：指的是vue对象从创建到销毁的过程。
 
@@ -42,7 +33,7 @@ vue的生命周期包含8个阶段：每触发一个生命周期事件，会自�
 | beforeDestroy | 销毁前   |
 | destroyed     | 销毁后   |
 
-![alt text](../images/image-6.png)
+![alt text](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241721832.png)
 
 
 mounted：挂载完成，Vue初始化成功，HTML页面渲染成功。**以后我们一般用于页面初始化自动的ajax请求后台数据**
