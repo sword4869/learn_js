@@ -6,9 +6,9 @@
 
 | **指令**  | **作用**                                            |
 | --------- | --------------------------------------------------- |
-| v-bind    | 为HTML标签绑定属性值，如设置  href , css样式等      |
-| v-model   | 在表单元素上创建双向数据绑定，绑定到value属性上|
-| v-on      | 为HTML标签绑定事件                                  |
+| v-on（`@`） | 为HTML标签绑定事件                                  |
+| v-bind  （`:`） | 单向绑定。数据流向html页面，但反之不行  `<input type="text" :value="firstName">` |
+| v-model   | 在表单元素上创建双向数据绑定，绑定到value属性上 `<input type="text" v-model="firstName">` |
 | v-if/v-else-if/v-else| 条件性的渲染某元素，判定为true时渲染,否则不渲染     |
 | v-show    | 根据条件展示某元素，区别在于切换的是display属性的值 |
 | v-for     | 列表渲染，遍历容器的元素或者对象的属性              |
@@ -17,6 +17,19 @@
 ![alt text](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241721831.png)
 
 ![alt text](https://cdn.jsdelivr.net/gh/sword4869/pic1@main/images/202407241730370.png)
+
+```vue
+// v-for,  :key
+<li v-for="g in games" :key="g.id">{{ g.name }}</li>
+
+let games = reactive([
+  { id: 'ahsgdyfa01', name: '英雄联盟' },
+  { id: 'ahsgdyfa02', name: '王者荣耀' },
+  { id: 'ahsgdyfa03', name: '原神' }
+])
+```
+
+
 
 ## 使用 JavaScript 表达式
 
