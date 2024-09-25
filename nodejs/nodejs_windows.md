@@ -21,28 +21,48 @@ npm config set registry https://registry.npmmirror.com
 
 ## 下载路径配置
 
-创建文件夹
+### 查看现有配置
 
-- `D:\nodejs\node_global\node_modules`
-- `D:\nodejs\node_cache`
+默认下载到C盘，这是我们不想的。
+
+（1）全局模块的下载位置
+
+`prefix`：里面有个 `node_modules` 文件夹。
 
 ```cmd
-npm config set prefix "D:\nodejs\node_global"
-npm config set cache "D:\nodejs\node_cache"
+创建D:\MySoftware\node-v16.20.1-win-x64\node_modules
+
+npm config set prefix "D:\MySoftware\node-v16.20.1-win-x64"
+
+npm config get prefix
+D:\MySoftware\node-v16.20.1-win-x64
+```
+
+```cmd
+# 直接展示里面的 `node_modules` 文件夹
+npm root -g
+D:\MySoftware\node-v16.20.1-win-x64\node_modules
 ```
 
 修改环境变量：
 
-- 用户PATH: 将原本npm路径，替换为新 global 的路径 `D:\nodejs\node_global`
-- 系统，新建`NODE_PATH`, 值为 `D:\nodejs\node_global\node_modules`
-- 系统PATH: 添加 `%NODE_PATH%`.
+- prefix: 用户PATH中，将原本npm路径，替换为新 global 的路径 `D:\MySoftware\node-v16.20.1-win-x64`
+- prefix中node_modules：系统，新建`NODE_PATH`, 值为 `D:\MySoftware\node-v16.20.1-win-x64\node_modules`，然后系统PATH添加 `%NODE_PATH%`.
+
+（2）缓存文件夹
+
+`cache`
 
 ```cmd
-// -g是全局安装的意思，不加 -g 就是默认下载到当前目录
-npm install -g express 
+npm config get cache
+C:\Users\lab\AppData\Local\npm-cache
+
+npm config set cache "D:\MySoftware\node-v16.20.1-win-x64\npm-cache"
+
+npm config get cache
+C:\Users\lab\AppData\Local\npm-cache
 ```
 
-可以看到，下载的 express 模块成功下载到全局的指定目录
 
 ## 安装模块
 

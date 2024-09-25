@@ -71,6 +71,8 @@ $ npm install
 
 一般用于配置工具
 
+-g是全局安装的意思，不加 -g 就是默认下载到当前目录
+
 ```bash
 $ npm install -g xxx
 ```
