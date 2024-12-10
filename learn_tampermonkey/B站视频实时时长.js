@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         B站视频实时时长
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  B站视频批量计算观看时长，支持倍速计算，支持多P视频，支持多集视频，支持多P多集视频，
 // @author       sword4869
 // @match        https://www.bilibili.com/video/*
@@ -13,6 +13,16 @@
 
 (function () {
     'use strict';
+
+    const debug_mode = false;
+    const list_box = document.getElementsByClassName('video-pod__list')[0];
+
+    console.log("B站视频实时时长，启动！");
+    if (list_box == null) {
+        console.log("B站视频实时时长，未找到视频列表，退出！");
+        return;
+    }
+
     function parse_seconds(time) {
         // 获取时长的每个数字，这是一个数组,例如47:26，获取为 47，26，可用下标访问到每个数字
         let t = time.match(/\d+/g);
@@ -26,6 +36,7 @@
         }
     }
 
+    // 解析时间返回时分秒的字符串
     function seconds_to_str(seconds) {
         const hour = parseInt(seconds / 3600);
         const minute = parseInt((seconds % 3600) / 60);
@@ -37,7 +48,7 @@
     function get_total_video_time() {
         let total_seconds = 0;
         let accumulative_seconds = 0;
-        let is_on = false;
+        let until_active = false;
         const list = list_box.childNodes;
         for (let i = 0; i < list.length; i++) {
             const time = list[i].getElementsByClassName('duration')[0];
@@ -46,12 +57,17 @@
             }
             const seconds = parse_seconds(time.innerHTML);
             total_seconds += seconds;
-            if (list[i].classList.contains('on')) {
-                is_on = true;
-                accumulative_seconds += get_current_video_time();
-            }
-            if (!is_on) {
-                accumulative_seconds += seconds;
+
+            // 当前的视频是正在播放 active，那么之前的都必定已播放，之后的必未播放
+            if (!until_active) {
+                const cur_stats = list[i].classList.contains('active');
+                if(cur_stats){
+                    until_active = true;
+                    accumulative_seconds += get_current_video_time();
+                }
+                else{
+                    accumulative_seconds += seconds;
+                }
             }
         }
         return {
@@ -451,10 +467,9 @@
         }
     };
 
-    const list_box = document.getElementsByClassName('list-box')[0];
     const fm = new FluidMeter();
     const targetContainer = document.createElement('div');
-    
+
     // 定义鼠标按下时的坐标和拖动区域的初始位置
     let startX, startY, startRight, startTop;
 
@@ -477,27 +492,31 @@
 
     function updater() {
         const seconds = get_total_video_time();
+        // 所有集的总时间
         const total_seconds = seconds.total_seconds;
+        // 直到当前的累计时间
         const accumulative_seconds = seconds.accumulative_seconds;
-        
-        // const total_seconds_str = seconds_to_str(total_seconds);
+        // 剩余时间
+        const remaining_seconds = total_seconds - accumulative_seconds;
+
+        // 字符串格式
+        const total_seconds_str = seconds_to_str(total_seconds);
         const accumulative_seconds_str = seconds_to_str(accumulative_seconds);
-        const remaining_seconds_str = seconds_to_str(total_seconds - accumulative_seconds);
+        const remaining_seconds_str = seconds_to_str(remaining_seconds);
+
+        // 进度百分比
         let percentage = 0;
         if (total_seconds != 0) {
             percentage = (accumulative_seconds / total_seconds * 100).toFixed(3);
         }
+        if(debug_mode)
+            console.log(total_seconds_str, accumulative_seconds_str, remaining_seconds_str);
 
         const texts = [percentage, accumulative_seconds_str, remaining_seconds_str];
         fm.setTexts(texts);
     }
 
-    
-    console.log("B站视频实时时长，启动！");
-    if (list_box == null) {
-        console.log("B站视频实时时长，未找到视频列表，退出！");
-        return;
-    }
+
     const body = document.body;
     targetContainer.id = "fluid-meter";
     targetContainer.style.cssText = "position:absolute;right:55px;top:218px;z-index:999";
@@ -527,23 +546,23 @@
         document.addEventListener("mouseup", mouseupHandler);
     });
 
-    var clickTimer = null; 
+    var clickTimer = null;
     // 切换显示内容 text_kind
     targetContainer.onclick = function () {
-        if(clickTimer) {  
-            window.clearTimeout(clickTimer);  
-            clickTimer = null;  
-        }  
-        clickTimer = window.setTimeout(function(){  
+        if(clickTimer) {
+            window.clearTimeout(clickTimer);
+            clickTimer = null;
+        }
+        clickTimer = window.setTimeout(function(){
             fm.addTextIndex();
-        }, 300);  
+        }, 300);
     }
 
     // 切换格式
     targetContainer.ondblclick = function () {
-        if(clickTimer) {  
-            window.clearTimeout(clickTimer);  
-            clickTimer = null;  
+        if(clickTimer) {
+            window.clearTimeout(clickTimer);
+            clickTimer = null;
         }
 
         let ul = document.getElementById('mirror-vdcon');
@@ -552,7 +571,7 @@
             ul.style.justifyContent = 'space-between'
         } else{
             ul.style.justifyContent = ''
-        }       
+        }
         console.log('切换格式' + justifyContent);
 
 
@@ -562,7 +581,7 @@
             ul.style.marginTop = '0px';
         } else{
             ul.style.marginTop = '745px';
-        }       
+        }
         console.log('切换格式' + marginTop);
     }
     console.log("B站视频实时时长，启动完毕！");
